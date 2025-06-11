@@ -1,0 +1,411 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
+body{
+    background-color: #EFE8D5;
+    font-family: 'Inter', sans-serif;
+    color: #343229;
+}
+header{
+    font-size: 300%;
+    font-weight: 300;
+    margin-top: 2%;
+    margin-left: 3%;
+}
+h3{
+    margin-top: 35px;
+    margin-left: 4%;
+}
+.container{
+    width: 90%;
+    margin-left: 4%;
+    border: 3px solid #C9C3B2;
+    height: auto;
+    overflow: auto;
+}
+.linha{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+input[type="text"],input[type="date"],input[type="email"],input[type="number"],select {
+    height: 45px;
+    background-color: #FBF4E3;
+    border: 1px solid #026970;
+    justify-content: center;
+    font-size: 150%;
+    font-weight: 500;
+    text-align: center;
+}
+input[type="text"],input[type="email"],input[type="number"],select{
+color: #1F1F1F;
+}
+#Nome{
+    width: 45%;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+select {
+    height: 49px;
+    cursor: pointer;
+    text-align: center;
+    color:#1F1F1F;
+    font-weight: 700;
+    font-size: 20px;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('/arrow-down.svg');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 30px;
+  }
+#Cpf{
+    width: 25%;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+#estadoCivil{
+    width: 26%;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+#estadoCivil option{
+    color: #1F1F1F;
+    font-weight: 700;
+}
+.select-custom{
+    color:#B5AF9D;
+}
+.select-custom.selected{
+    color:#1F1F1F;
+}
+#Email{
+    width: 45%;
+    margin-left: 10px;
+    margin-top: 30px;
+}
+#Telefone{
+    width: 25%;
+    margin-left: 10px;
+    margin-top: 30px;
+}
+#Fixo{
+    width: 25.7%;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 30px;
+}
+
+#Data {
+  width: 24%;
+  margin: 40px 0 0 10px;
+  font-size: 20px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.Idade label{
+    margin-top: 23px;
+    font-size: 125%;
+    text-align: center;
+    font-weight: 700;
+    justify-content: center;
+}
+.Idade{
+    width: 20%;
+    margin-left: 3%;
+}
+#Idade{
+    margin-top: 40px;
+    width: 30%;
+    margin-left: 10px;
+}
+.Genero label{
+    font-size: 125%;
+    font-weight: 700;
+}
+.Genero{
+    display: inline-flex;
+    margin-top: 52px;
+    margin-left: 5px;
+}
+#generoMasc{
+    margin-left: 25px;
+}
+#generoFem{
+    margin-left: 25px;
+}
+#generoOut{
+margin-left: 25px;
+}
+#Cep{
+    width: 23%;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+#Endereco{
+    width: 30%;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+#Estado{
+    width: 16%;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+#Bairro{
+    width: 25.5%;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#Cidade{
+    width: 23%;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+#Residencia{
+    width: 15%;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+#Complemento{
+    width: 57.7%;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.Genero input[type="radio"]{
+    appearance: none;
+    border-radius: 15px;
+    margin-top: -2px;
+    width: 25px;
+    height: 25px;
+    background-color: #026970;
+    cursor: pointer; 
+}
+.especie input[type="radio"]:checked, .Genero input[type="radio"]:checked {
+    background-color: #EEFFFE;
+    border: 6px solid #026970; 
+}
+::placeholder{
+    text-align: center;
+    justify-content: center;
+    color:#B5AF9D;
+    font-weight: 600;
+    font-size: 80%;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button{
+    -webkit-appearance: none; 
+    margin: 0;
+}
+.botoes button{
+    margin-top: 73.5px;
+    margin-left: 50px;
+    margin-right: 50px;
+    width: 318px;
+    height: 60px;
+    font-size: 20px;
+    border-radius: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.buttonConfirmar, .buttonHome{
+    background-color: #026970;
+    color: #FFFFFF;
+    border: none;
+}
+.buttonVoltar{
+    background-color:#84E1DB ;
+    color: #343229;
+    border: #84E1DB;
+} 
+
+@media screen  and (max-width: 1025px){
+    .linha {
+        margin-bottom: 5px;
+        flex-wrap: wrap;
+    }
+    #Nome{
+        width: 100%;
+        margin-left: 10px;
+        margin-top: 5px;
+        margin-right: 10px;
+    }
+    #Cpf,#estadoCivil{
+        width: 47.75%;
+        margin-right: 5px;
+    }
+    #Email{
+        margin-top: 2px;
+        width: 100%;
+        margin-right: 10px;
+    }
+    #Telefone,#Fixo{
+        width: 48%;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+    #Data, .Idade {
+        flex-basis: 47%;
+        margin-top: 5px;
+    }
+    .Idade{
+        height: 60px;
+    }
+    .Idade label{
+        margin-top: 0px;
+    }
+    #Idade{
+        margin-top: 0px;
+        width: 30%;
+        margin-left: 10px;
+    }
+    .generoPet{
+        margin-top: 10px;
+        width: 400px;
+        margin-left: 50px;
+        margin-bottom: 10px;
+    }
+    .especie{
+        margin-top: 10px;
+        width: 400px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+    .dataCadastro{
+        width: 300px;
+        margin-top: 10px;
+        margin-left: 15%;
+    }
+    #observacaoCastracaoPet{
+        width: 100%;
+    }
+    .botoes{
+        width: 100%;
+    }
+    .botoes button{
+        width: 20%;
+        margin: 2% 6.5%;
+    }
+}
+@media screen and (max-width: 769px){
+    .linha{
+        display: flex;
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    #Cpf, #estadoCivil{
+        width: 47.75%;
+        margin-right: 5px;
+    }
+    #estadoCivil{
+        margin-left: 0;
+    }
+    #telefonePet{
+        width: 47.8%;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+    #Fixo{
+        width: 47.6%;
+        margin-left: 5px;
+    }
+    .generoPet, .especie {
+        width: 48%;
+        margin-top: 10px;
+    }
+    .generoPet{
+        margin-left: 10px;
+    }
+    #generoMasc{
+        margin-left: 10px;
+    }
+    #generoFem{
+        margin-left: 10px;
+    }
+    .especie input[type="radio"], .generoPet input[type="radio"] {
+        width: 15px; 
+        height: 15px; 
+        min-width: 15px; 
+        min-height: 15px; 
+        margin-top: 2px; 
+    }
+    
+    .especie input[type="radio"]:checked, .generoPet input[type="radio"]:checked {
+        background-color: #EEFFFE;
+        border: 4px solid #026970;  
+    }
+    .dataCadastro{
+        width: 300px;
+        margin-top: 10px;
+        margin-left: 6%;
+    }
+    .botoes{
+        width: 100%;
+        margin-left: 15px;
+    }
+    .botoes button{
+        width: 15%;
+        margin: 2% 8%;
+    }
+}
+@media screen and (max-width: 426px){
+    header{
+        font-size: 200%;
+    }
+    #Cpf, #estadoCivil{
+        width: 46.5%;
+        margin-right: 5px;
+    }
+    #telefonePet, #Fixo{
+        width: 45.7%;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+    #Fixo{
+        margin-left: 5px;
+    }
+    #Data, .Idade {
+        flex-basis: 46%; 
+        margin-top: 5px;
+    }
+    .dataCadastro{
+        width: 100%;
+        margin-left: 0;
+    }
+    .HoraCadatro{
+        width: 100%;
+        justify-content: center;
+    }
+    .botoes button{
+        width: 21%;
+        margin-top: 20px;
+        margin-right: 3px;
+        font-size: 100%;
+    }
+}
+@media screen and (max-width: 376px){
+    #Cpf, #estadoCivil{
+        width: 45.3%;
+    }
+    #Telefone, #Fixo{
+        width: 45%;
+    }
+    .botoes button{
+        width: 25%;
+        margin-top: 15px;
+        font-size: 100%;
+        margin-left: 0;
+    }
+    .botoes{
+        width: 100%;
+        text-align: center;
+        margin: 0;
+    }
+}

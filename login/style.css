@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #fdf6ec;
+  padding: 0;
+}
+
+.container-fluid {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+._content {
+  background: linear-gradient(180deg, #026970 0%, #09A6A3 100%);
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+.left-panel {
+  width: 45%;
+  position: relative;
+  padding-right: 32px;
+  color: white;
+  padding: 30px;
+}
+
+.left-panel h2 {
+  margin-top: 45px;
+  font-size: 34px;
+  text-align: center;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.paw-prints {
+  width: 100%;
+  overflow-x: hidden
+}
+
+.paw-prints .paw-print {
+  width: 39vw;
+  user-select: none;
+  pointer-events: none;
+}
+
+.pets-image {
+  width: 50vw;
+  bottom: 0;
+  position: absolute;
+  left: 48%;
+  transform: translateX(-44%);
+  user-select: none;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.right-panel {
+  width: 55%;
+  color: #B5AF9D;
+  background-color: #FBF4E3;
+  padding: 50px;
+  border-top-left-radius: 60px ;
+  border-bottom-left-radius: 40px;
+  position: relative;
+  z-index: 1 ;
+}
+
+.right-panel-content{
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-panel h3 {
+  font-size: 32px;
+  position: absolute;
+  left: 0;
+  font-weight: 600;
+  top: 100px;
+  margin-bottom: 30px;
+  color: black
+}
+
+.form-control {
+  color: #434136;
+  border: none;
+  border-bottom: 2px solid #B5AF9D;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.form-control::placeholder {
+color: #B5AF9D;
+}
+
+.form-control:focus {
+  color: #434136;
+  box-shadow: none;
+  border-color: #026970;
+  background-color: #FBF4E3;
+}
+
+.password-container {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 30%;
+  right: 10px;
+  transform: translateY(-20%);
+  cursor: pointer;
+  font-size: 1 rem;
+  color: #B5AF9D;
+}
+
+.login-btn {
+  background-color: #B5AF9D;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+.login-btn:hover {
+  background-color: #746d66;
+  color: white
+}
+
+.admin-link {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: #B5AF9D;
+}
+
+.admin-link a {
+  color: #434136;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.admin-link a:hover {
+  text-decoration: underline;
+}
+
+
+@media (max-width: 768px) {
+    ._content {
+        flex-direction: column;
+    }
+
+    .left-panel {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+
+    .left-panel h2 {
+      margin-top: 25px;
+      font-size: 21px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .right-panel {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        border-top-left-radius: 50px;
+        border-top-right-radius: 50px;
+        z-index: 2;
+        padding: 40px;
+    }
+
+    .right-panel-content{
+      height: 100%;
+      
+    }
+
+    .paw-prints {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .paw-prints .paw-print {
+      top: 20px;
+      left: 0px;
+      position: absolute;
+      width: 100%;
+      z-index: 0;
+    }
+
+    .pets-image {
+        position: absolute;
+        width: 100vw;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -50px;
+        max-width: 600px;
+    }
+
+    .right-panel h3 {
+      font-size: 25px;
+      position: initial;
+      text-align: left;
+      width: 100%;
+    }
+}
