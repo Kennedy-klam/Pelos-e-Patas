@@ -2,6 +2,9 @@
 include('../database/conexao.php');
 include('../database/protect.php');
 
+// Ativa erro detalhado do MySQLi
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nomePet = trim($_POST['NomePet'] ?? '');
     $nomeDono = trim($_POST['nomeDono'] ?? '');
@@ -9,6 +12,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $racaNome = trim($_POST['racaPet'] ?? '');
     $idade = isset($_POST['idadePet']) ? (int) $_POST['idadePet'] : null;
     $sexo = $_POST['sexo'] ?? '';
+    $sexo = strtolower($sexo); // Garantir lowercase
+
+    if ($sexo === 'femea') {
+        $sexo = 1;
+    } elseif ($sexo === 'macho') {
+        $sexo = 2;
+    } else {
+        $sexo = null;
+    }
+
     $especieNome = $_POST['especie'] ?? '';
     $obs = trim($_POST['observacaoCastracaoPet'] ?? '');
 
@@ -50,20 +63,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $idEspecie = $insertEspecie->insert_id;
     }
 
-    // Inserir raça (se quiser salvar no banco, mesmo sem FK em `pet`)
+    if (!isset($idEspecie)) {
+        echo "<script>alert('Erro ao definir a espécie.'); window.history.back();</script>";
+        exit();
+    }
+
+    // Inserir raça se não existir
     $queryRaca = $conn->prepare("SELECT id_raca FROM raca WHERE nome = ?");
     $queryRaca->bind_param("s", $racaNome);
     $queryRaca->execute();
     $resultRaca = $queryRaca->get_result();
 
     if ($resultRaca->num_rows === 0) {
-        $insertRaca = $conn->prepare("INSERT INTO raca (nome) VALUES (?)");
-        $insertRaca->bind_param("s", $racaNome);
+        $insertRaca = $conn->prepare("INSERT INTO raca (nome, id_especie) VALUES (?, ?)");
+        $insertRaca->bind_param("si", $racaNome, $idEspecie);
         $insertRaca->execute();
-        // não precisamos do id_raca aqui
     }
 
-    // Inserir PET (sem id_raca)
+    // Inserir PET
     $insertPet = $conn->prepare("INSERT INTO pet (nome, porte, idade, sexo, id_cliente, id_especie) VALUES (?, ?, ?, ?, ?, ?)");
     $insertPet->bind_param("ssiiii", $nomePet, $porte, $idade, $sexo, $idCliente, $idEspecie);
     $insertPet->execute();
