@@ -19,7 +19,20 @@ include('../database/protect.php');
             <div class="container">
                 <div class="linha">
                     <input type="text" name="NomePet" id="NomePet" placeholder="Nome do pet" required />
-                    <input type="text" name="nomeDono" id="nomeDono" placeholder="Digite o nome do dono" onblur="buscarCliente()" required />
+
+                    <!-- Campo com datalist para autocomplete -->
+                    <input 
+                        type="text" 
+                        name="nomeDono" 
+                        id="nomeDono" 
+                        list="listaClientes"
+                        placeholder="Digite o nome do dono"
+                        oninput="buscarSugestoesCliente()"
+                        onchange="buscarClienteSelecionado()"
+                        required
+                    />
+                    <datalist id="listaClientes"></datalist>
+
                     <select name="portePet" id="portePet" class="select-custom" required>
                         <option value="" disabled selected>Porte do animal</option>
                         <option value="Pequeno">Porte Pequeno</option>
@@ -27,13 +40,15 @@ include('../database/protect.php');
                         <option value="Grande">Porte Grande</option>
                     </select>
                 </div>
+
                 <div class="linha">
-                    <input type="email" name="emailDono" id="emailDono" placeholder="Email" />
-                    <input type="number" name="telefonePet" id="telefonePet" placeholder="Telefone" />
+                    <input type="email" name="emailDono" id="emailDono" placeholder="Email" readonly />
+                    <input type="number" name="telefonePet" id="telefonePet" placeholder="Telefone" readonly />
                     <input type="text" name="racaPet" id="racaPet" placeholder="Raça" required />
                 </div>
+
                 <div class="linha">
-                    <input type="date" id="nascimentoPet" class="date-custom" required />
+                    <input type="date" id="nascimentoPet" name="nascimentoPet" class="date-custom" required />
                     <div class="idadePet">
                         <label for="idadePet">Idade: </label>
                         <input type="number" name="idadePet" id="idadePet" min="0" />
@@ -76,6 +91,7 @@ include('../database/protect.php');
             </div>
         </form>
     </main>
+
     <script src="Script.js"></script>
 </body>
 </html>
