@@ -106,7 +106,20 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
                     </div>
                     <div class="cardfooter colorfooter3">
                         <p class="ticket">Ticket Medio $255.31 - Ref. 4 vendas(s)</p>
-
+                    </div>
+                </div>
+                <div class="cards-header">
+                    <div class="cardheader color1">
+                        <div class="cards-value">
+                            <p class="values">1.021,25</p>
+                            <p class="descriptio">Vendas Hoje</p>
+                        </div>
+                        <div class="cards-icons">
+                            <i class="fa-solid fa-cart-shopping colors1"></i>
+                        </div>
+                    </div>
+                    <div class="cardfooter colorfooter1">
+                        <p class="ticket">Ticket Medio $255.31 - Ref. 4 vendas(s)</p>
                     </div>
                 </div>
             </div>
