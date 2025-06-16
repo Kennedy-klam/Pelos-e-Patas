@@ -19,7 +19,7 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
     <title>Dashboard</title>
     <link rel="stylesheet" href="public/css/all.css?v=123">
     <link rel="stylesheet" href="public/css/bootstrap.min.css?v=123">
-    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="public/css/style.css?v=123">
     <script src="public/js/chart.js"></script>
 
 </head>

@@ -63,20 +63,18 @@ th {
 }
 
 td {
-    width: 1452px;
-    height: 50px;
-    padding: 10px 20px;
-    background-color: #EFE8D5;
-    color: #343229;
-    text-align: center;
-    font-family: Inter;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 100%;
-    letter-spacing: 0%;
-    vertical-align: middle;
-        border-bottom: 2px solid #B5AF9D;
-
+  padding: 10px 20px;
+  background-color: #EFE8D5;
+  color: #343229;
+  text-align: center;
+  font-family: Inter;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  border-bottom: 2px solid #B5AF9D;
+  white-space: nowrap; /* EVITA QUE OS BOTÕES QUEBREM LINHA */
 }
 
 .seta-svg {
@@ -102,13 +100,14 @@ td {
   line-height: 100%;
   letter-spacing: 0;
   text-align: center;
-  width: 109px;
+  min-width: 109px;
   height: 50px;
   border-radius: 15px;
   padding: 10px 5px;
   border: none;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  display: inline-block; 
 }
 
 .confirmar-button {
@@ -127,4 +126,12 @@ td {
 
 .cancelar-button:hover {
   background-color: #968e8e;
+}
+
+.button-group-horizontal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* espaçamento entre os botões */
 }
