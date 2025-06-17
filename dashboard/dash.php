@@ -74,9 +74,57 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
                     </button>
                 </div>
             </div>
+            <!-- card 1 -->
+            <div class="cards">
+                <div class="cards-header">
+                    <div class="cardheader color1">
+                        <div class="cards-value">
+                            <p class="values">1.021,25</p>
+                            <p class="descriptio">Vendas Hoje</p>
+                        </div>
+                        <div class="cards-icons">
+                            <i class="fa-solid fa-cart-shopping colors1"></i>
+                        </div>
+                    </div>
+                    <div class="cardfooter colorfooter1">
+                        <p class="ticket">Ticket Medio $255.31 - Ref. 4 vendas(s)</p>
+                    </div>
+                </div>
 
-            <!-- Seus cards e tabelas aqui ... -->
+                <!-- card 2 -->
+                <div class="cards-header">
+                    <div class="cardheader color2">
+                        <div class="cards-value">
+                            <p class="values">1.021,25</p>
+                            <p class="descriptio">Vendas Periodicas</p>
+                        </div>
+                        <div class="cards-icons">
+                            <i class="fa fa-bar-chart colors2"></i>
+                        </div>
+                    </div>
+                    <div class="cardfooter colorfooter2">
+                        <p class="ticket">Ticket Medio $255.31 - Ref. 4 vendas(s)</p>
+                    </div>
+                </div>
 
+
+                <!-- card 3 -->
+                <div class="cards-header">
+                    <div class="cardheader color3">
+                        <div class="cards-value">
+                            <p class="values">1.021,25</p>
+                            <p class="descriptio">Receber Hoje</p>
+                        </div>
+                        <div class="cards-icons">
+                            <i class="fa fa-bar-chart colors3"></i>
+                        </div>
+                    </div>
+                    <div class="cardfooter colorfooter3">
+                        <p class="ticket">Ticket Medio $255.31 - Ref. 4 vendas(s)</p>
+
+                    </div>
+                </div>
+            </div>
             <div class="conteiner">
                 <div class="list-pays">
                     <table class="table table-sm">
@@ -106,14 +154,16 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
                         </tbody>
                     </table>
                 </div>
-                <div class="charts" style="display:flex; gap: 40px; flex-wrap: wrap;">
-                    <div style="flex: 1 1 400px;">
-                        <h3>Caninos Castrados (Machos e Fêmeas)</h3>
-                        <canvas id="chartCaninos" style="width: 100%; height: 400px;"></canvas>
-                    </div>
-                    <div style="flex: 1 1 400px;">
-                        <h3>Felinas Castradas (Somente Fêmeas)</h3>
-                        <canvas id="chartFelinas" style="width: 100%; height: 400px;"></canvas>
+                <div class="charts-wrapper">
+                    <div class="charts" style="display:flex; gap: 40px; flex-wrap: wrap;">
+                        <div style="flex: 1 1 0px; background-color:white; border-radius: 4px; padding: 15px;">
+                            <h3>Caninos Castrados</h3>
+                            <canvas id="chartCaninos" style="width: 150%; height: 600px;"></canvas>
+                        </div>
+                        <div style="flex: 1 1 0px; background-color:white; border-radius: 4px; padding: 15px;">
+                            <h3>Felinos Castrados</h3>
+                            <canvas id="chartFelinos" style="width: 150%; height: 600px;"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -132,14 +182,14 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
                 const caninos = data.filter(item => item.especie === 'canino');
 
                 // Filtra dados para felinas (somente fêmeas)
-                const felinas = data.filter(item => item.especie === 'felino' && item.sexo === 'femea');
+                const felinas = data.filter(item => item.especie === 'felino');
 
                 // Labels para caninos: "Idade: X - sexo"
                 const labelsCaninos = caninos.map(item => `Idade: ${item.idade} - ${item.sexo}`);
                 const valoresCaninos = caninos.map(item => item.total);
 
                 // Labels para felinas: "Idade: X"
-                const labelsFelinas = felinas.map(item => `Idade: ${item.idade}`);
+                const labelsFelinas = felinas.map(item => `Idade: ${item.idade} - ${item.sexo}`);
                 const valoresFelinas = felinas.map(item => item.total);
 
                 // Função para criar gráficos com o mesmo estilo
@@ -159,9 +209,16 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
                         options: {
                             responsive: true,
                             scales: {
-                                y: {
-                                    beginAtZero: true
+                               y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    stepSize: 1,
+                                    callback: function(value) {
+                                        return Number.isInteger(value) ? value : null;
+                                        }
+                                    }
                                 }
+
                             }
                         }
                     });
@@ -171,8 +228,8 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
                 const ctxCaninos = document.getElementById('chartCaninos').getContext('2d');
                 criarGrafico(ctxCaninos, labelsCaninos, valoresCaninos, 'Caninos Castrados');
 
-                const ctxFelinas = document.getElementById('chartFelinas').getContext('2d');
-                criarGrafico(ctxFelinas, labelsFelinas, valoresFelinas, 'Felinas Castradas');
+                const ctxFelinas = document.getElementById('chartFelinos').getContext('2d');
+                criarGrafico(ctxFelinas, labelsFelinas, valoresFelinas, 'Felinos Castrados');
             })
             .catch(error => {
                 console.error('Erro ao carregar os dados do gráfico:', error);
