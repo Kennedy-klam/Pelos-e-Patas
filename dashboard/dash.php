@@ -11,38 +11,52 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Dashboard</title>
-    <link rel="stylesheet" href="public/css/all.css?v=123">
-    <link rel="stylesheet" href="public/css/bootstrap.min.css?v=123">
-    <link rel="stylesheet" href="public/css/style.css?v=123">
+    <link rel="stylesheet" href="public/css/all.css?v=123" />
+    <link rel="stylesheet" href="public/css/bootstrap.min.css?v=123" />
+    <link rel="stylesheet" href="public/css/style.css?v=123" />
     <script src="public/js/chart.js"></script>
-
 </head>
 
 <body>
     <div class="container-fluid">
-
         <header class="headers">
             <nav class="nav">
                 <div class="logo">
-                    <a href="#"><img src="public/images/logo.png" alt=""></a>
+                    <a href="#"><img src="public/images/logo.png" alt="" /></a>
                 </div>
                 <form action="" class="form-group">
                     <div class="rows">
-                        <input type="text" name="seach" id="" placeholder="Procurar opcao do menu..."
-                            class="form-control">
+                        <input
+                            type="text"
+                            name="seach"
+                            placeholder="Procurar opcao do menu..."
+                            class="form-control"
+                        />
                         <i class="fa-solid fa-search search"></i>
                     </div>
                 </form>
                 <ul>
-                    <li><a href="../fila/fila.php"><span><i class="fa-solid fa-calendar-alt"></i></span> Fila de castração</a></li>
-                    <li><a href="../cadastro-pet/cadastro-pet.php"><span><i class="fa-solid fa-address-card"></i></span> Cadastro de Pet</a></li>
-                    <li><a href="../login/logout.php"><span><i class="fa-solid fa-right-from-bracket"></i></span> Logout</a></li>
+                    <li>
+                        <a href="../fila/fila.php"
+                            ><span><i class="fa-solid fa-calendar-alt"></i></span> Fila de castração</a
+                        >
+                    </li>
+                    <li>
+                        <a href="../cadastro-pet/cadastro-pet.php"
+                            ><span><i class="fa-solid fa-address-card"></i></span> Cadastro de Pet</a
+                        >
+                    </li>
+                    <li>
+                        <a href="../login/logout.php"
+                            ><span><i class="fa-solid fa-right-from-bracket"></i></span> Logout</a
+                        >
+                    </li>
                 </ul>
             </nav>
         </header>
@@ -56,73 +70,13 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
                 </div>
                 <div class="users">
                     <button class="btn btn-users">
-                        <p> <?php echo "Bem vindo " . htmlspecialchars($nomeDaClinica);?></p>
+                        <p><?php echo "Bem vindo " . htmlspecialchars($nomeDaClinica); ?></p>
                     </button>
                 </div>
             </div>
-            <div class="cards">
-                <div class="cards-header">
-                    <div class="cardheader color1">
-                        <div class="cards-value">
-                            <p class="values">1.021,25</p>
-                            <p class="descriptio">Vendas Hoje</p>
-                        </div>
-                        <div class="cards-icons">
-                            <i class="fa-solid fa-cart-shopping colors1"></i>
-                        </div>
-                    </div>
-                    <div class="cardfooter colorfooter1">
-                        <p class="ticket">Ticket Medio $255.31 - Ref. 4 vendas(s)</p>
-                    </div>
-                </div>
 
-                <!-- card 2 -->
-                <div class="cards-header">
-                    <div class="cardheader color2">
-                        <div class="cards-value">
-                            <p class="values">1.021,25</p>
-                            <p class="descriptio">Vendas Periodicas</p>
-                        </div>
-                        <div class="cards-icons">
-                            <i class="fa fa-bar-chart colors2"></i>
-                        </div>
-                    </div>
-                    <div class="cardfooter colorfooter2">
-                        <p class="ticket">Ticket Medio $255.31 - Ref. 4 vendas(s)</p>
-                    </div>
-                </div>
+            <!-- Seus cards e tabelas aqui ... -->
 
-
-                <!-- card 3 -->
-                <div class="cards-header">
-                    <div class="cardheader color3">
-                        <div class="cards-value">
-                            <p class="values">1.021,25</p>
-                            <p class="descriptio">Receber Hoje</p>
-                        </div>
-                        <div class="cards-icons">
-                            <i class="fa fa-bar-chart colors3"></i>
-                        </div>
-                    </div>
-                    <div class="cardfooter colorfooter3">
-                        <p class="ticket">Ticket Medio $255.31 - Ref. 4 vendas(s)</p>
-                    </div>
-                </div>
-                <div class="cards-header">
-                    <div class="cardheader color1">
-                        <div class="cards-value">
-                            <p class="values">1.021,25</p>
-                            <p class="descriptio">Vendas Hoje</p>
-                        </div>
-                        <div class="cards-icons">
-                            <i class="fa-solid fa-cart-shopping colors1"></i>
-                        </div>
-                    </div>
-                    <div class="cardfooter colorfooter1">
-                        <p class="ticket">Ticket Medio $255.31 - Ref. 4 vendas(s)</p>
-                    </div>
-                </div>
-            </div>
             <div class="conteiner">
                 <div class="list-pays">
                     <table class="table table-sm">
@@ -152,12 +106,15 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
                         </tbody>
                     </table>
                 </div>
-
-                <div class="charts">
-                    <div class="Chart-Titles">
-                        <p class="vendasChart">Animais por Sexo e Espécie</p>
+                <div class="charts" style="display:flex; gap: 40px; flex-wrap: wrap;">
+                    <div style="flex: 1 1 400px;">
+                        <h3>Caninos Castrados (Machos e Fêmeas)</h3>
+                        <canvas id="chartCaninos" style="width: 100%; height: 400px;"></canvas>
                     </div>
-                    <canvas style="width: 500px; height: 500px;" id="myChart"></canvas>
+                    <div style="flex: 1 1 400px;">
+                        <h3>Felinas Castradas (Somente Fêmeas)</h3>
+                        <canvas id="chartFelinas" style="width: 100%; height: 400px;"></canvas>
+                    </div>
                 </div>
             </div>
         </main>
@@ -165,41 +122,61 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
 
     <script src="public/js/nav.js"></script>
 
- <script>
+    <script>
         fetch('dados_chart.php')
             .then(response => response.json())
             .then(data => {
-                const labels = data.map(item => `${item.especie} - ${item.sexo}`);
-                const valores = data.map(item => item.total);
+                // Como no PHP já filtramos apenas os castrados (estado = "confirmado")
 
-                const ctx = document.getElementById('myChart').getContext('2d');
+                // Filtra dados para caninos (todos os sexos)
+                const caninos = data.filter(item => item.especie === 'canino');
 
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            label: 'Total de animais',
-                            data: valores,
-                            backgroundColor: 'rgba(37, 160, 158, 0.7)',
-                            borderColor: 'rgba(37, 160, 158, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        scales: {
-                            y: {
-                                beginAtZero: true
+                // Filtra dados para felinas (somente fêmeas)
+                const felinas = data.filter(item => item.especie === 'felino' && item.sexo === 'femea');
+
+                // Labels para caninos: "Idade: X - sexo"
+                const labelsCaninos = caninos.map(item => `Idade: ${item.idade} - ${item.sexo}`);
+                const valoresCaninos = caninos.map(item => item.total);
+
+                // Labels para felinas: "Idade: X"
+                const labelsFelinas = felinas.map(item => `Idade: ${item.idade}`);
+                const valoresFelinas = felinas.map(item => item.total);
+
+                // Função para criar gráficos com o mesmo estilo
+                function criarGrafico(ctx, labels, dados, titulo) {
+                    return new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: titulo,
+                                data: dados,
+                                backgroundColor: 'rgba(37, 160, 158, 0.7)',
+                                borderColor: 'rgba(37, 160, 158, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
                             }
                         }
-                    }
-                });
+                    });
+                }
+
+                // Renderiza gráficos
+                const ctxCaninos = document.getElementById('chartCaninos').getContext('2d');
+                criarGrafico(ctxCaninos, labelsCaninos, valoresCaninos, 'Caninos Castrados');
+
+                const ctxFelinas = document.getElementById('chartFelinas').getContext('2d');
+                criarGrafico(ctxFelinas, labelsFelinas, valoresFelinas, 'Felinas Castradas');
             })
             .catch(error => {
-                console.error("Erro ao carregar os dados do gráfico:", error);
+                console.error('Erro ao carregar os dados do gráfico:', error);
             });
     </script>
 </body>
-
 </html>
