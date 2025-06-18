@@ -292,20 +292,12 @@ body{
 
 .conteiner .list-pays{
     width: 300px;
-    height: 150px;
+    height: 154px;
     border-radius: 4px !important;
     padding: 10px;
     background-color: #fcfcfc;
 }
-.conteiner .list-pays .table tbody tr td .btn{
-    padding: 0 !important;
-    margin: 0 !important;
-    padding: 4px 8px !important;
-    background-color: #09A6A3 !important;
-    font-size: 0.6rem;
-    color: #fff;
-    font-weight: bold;
-}
+
 .conteiner .list-pays .table tbody tr td{
     font-size: 0.8rem;
 }
@@ -350,13 +342,13 @@ body{
         border-radius: 4px;
         padding: 15px;
         width: 300px;
-        height: 315px;
+        height: 301px;
         box-sizing: border-box;
         margin-left: -10px;
     }
 
     #graficoPizza {
-        width: 250px !important;
-        height: 250px !important;
+        width: 240px !important;
+        height: 240px !important;
         margin: 0 auto
      }

@@ -127,32 +127,32 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
             </div>
             <div class="conteiner">
                 <div class="list-pays">
-                    <table class="table table-sm">
-                        <thead class="text-center">
-                            <tr>
-                                <th>Cliente</th>
-                                <th>Total</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-center">
-                            <tr>
-                                <td>Chester</td>
-                                <td>80,0</td>
-                                <td><button class="btn rounded-0">VENDA</button></td>
-                            </tr>
-                            <tr>
-                                <td>Macoda</td>
-                                <td>180,0</td>
-                                <td><button class="btn rounded-0">VENDA</button></td>
-                            </tr>
-                            <tr>
-                                <td>Nogar</td>
-                                <td>800,0</td>
-                                <td><button class="btn rounded-0">VENDA</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <table class="table table-sm text-left">
+                    <thead>
+                        <tr>
+                            <th colspan="3" style="white-space: nowrap;">Castrações últimos 30 dias:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php include 'dados_tabela.php'; ?>
+                        <tr>
+                            <td>Total Castrações</td>
+                            <td><?= $total ?></td>
+                        </tr>
+                        <tr>
+                            <td>Machos</td>
+                            <td><?= $machos ?></td>
+                        </tr>
+                        <tr>
+                            <td>Fêmeas</td>
+                            <td><?= $femeas ?></td>
+                        </tr>
+                        <tr>
+                            <td>Canceladas</td>
+                            <td><?= $canceladas ?></td>
+                        </tr>
+                    </tbody>
+                </table>
                     <div class="grafico-box">
                         <h3>Pets Cadastrados</h3>
                         <canvas id="graficoPizza"></canvas>
