@@ -180,8 +180,6 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
         fetch('dados_chart.php')
             .then(response => response.json())
             .then(data => {
-                // Como no PHP já filtramos apenas os castrados (estado = "confirmado")
-
                 // Filtra dados para caninos (todos os sexos)
                 const caninos = data.filter(item => item.especie === 'canino');
 
