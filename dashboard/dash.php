@@ -49,9 +49,17 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
                     </li>
                     <li>
                         <a href="../cadastro-pet/cadastro-pet.php"
-                            ><span><i class="fa-solid fa-address-card"></i></span> Cadastro de Pet</a
+                            ><span><i class="fa-solid fa fa-paw"></i></span> Cadastro de Pet</a
                         >
                     </li>
+                    <li>
+                        <a href="../cadastro-pessoa/cadastro-pessoa.php"
+                            ><span><i class="fa-solid fa-address-card"></i></span> Cadastro de Pessoa</a
+                        >
+                    </li>
+
+
+                    
                     <li>
                         <a href="../login/logout.php"
                             ><span><i class="fa-solid fa-right-from-bracket"></i></span> Logout</a
@@ -74,54 +82,55 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
                     </button>
                 </div>
             </div>
-            <!-- card 1 -->
+            <!-- Cards de Castrações de Hoje -->
             <div class="cards">
+                <?php include 'dados_cards.php'; ?>
+
+                <!-- Card 1 - Confirmadas -->
                 <div class="cards-header">
                     <div class="cardheader color1">
                         <div class="cards-value">
-                            <p class="values">1.021,25</p>
-                            <p class="descriptio">Vendas Hoje</p>
+                            <p class="values"><?= $confirmadas_hoje ?></p>
+                            <p class="descriptio">Castrações Confirmadas</p>
                         </div>
                         <div class="cards-icons">
-                            <i class="fa-solid fa-cart-shopping colors1"></i>
+                            <i class="fa fa-check colors1"></i>
                         </div>
                     </div>
                     <div class="cardfooter colorfooter1">
-                        <p class="ticket">Ticket Medio $255.31 - Ref. 4 vendas(s)</p>
+                        <p class="ticket"><?= $confirmadas_hoje ?> castração(ões) confirmada(s) hoje</p>
                     </div>
                 </div>
 
-                <!-- card 2 -->
+                <!-- Card 2 - Canceladas -->
                 <div class="cards-header">
                     <div class="cardheader color2">
                         <div class="cards-value">
-                            <p class="values">1.021,25</p>
-                            <p class="descriptio">Vendas Periodicas</p>
+                            <p class="values"><?= $canceladas_hoje ?></p>
+                            <p class="descriptio">Castrações Canceladas</p>
                         </div>
                         <div class="cards-icons">
-                            <i class="fa fa-bar-chart colors2"></i>
+                            <i class="fa fa-ban colors2"></i>
                         </div>
                     </div>
                     <div class="cardfooter colorfooter2">
-                        <p class="ticket">Ticket Medio $255.31 - Ref. 4 vendas(s)</p>
+                        <p class="ticket"><?= $canceladas_hoje ?> castração(ões) cancelada(s) hoje</p>
                     </div>
                 </div>
 
-
-                <!-- card 3 -->
+                <!-- Card 3 - Pendentes -->
                 <div class="cards-header">
                     <div class="cardheader color3">
                         <div class="cards-value">
-                            <p class="values">1.021,25</p>
-                            <p class="descriptio">Receber Hoje</p>
+                            <p class="values"><?= $pendentes_hoje ?></p>
+                            <p class="descriptio">Castrações Pendentes</p>
                         </div>
                         <div class="cards-icons">
-                            <i class="fa fa-bar-chart colors3"></i>
+                            <i class="fa fa-clock colors3"></i>
                         </div>
                     </div>
                     <div class="cardfooter colorfooter3">
-                        <p class="ticket">Ticket Medio $255.31 - Ref. 4 vendas(s)</p>
-
+                        <p class="ticket"><?= $pendentes_hoje ?> castração(ões) pendente(s) hoje</p>
                     </div>
                 </div>
             </div>

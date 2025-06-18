@@ -9,7 +9,7 @@ include ('../database/protect.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css?v=123">
+    <link rel="stylesheet" href="style.css">
     <title>Cadastro de Pessoa</title>
 </head>
 <body>
@@ -65,9 +65,8 @@ include ('../database/protect.php');
             </div>
         </div>
         <div class="botoes">
-            <button type="submit" class="buttonConfirmar">Confirmar</button>
-            <button type="submit" class="buttonHome" onclick="window.location.href='../dashboard/dash.php';">Tela inicial</button>
             <button type="submit" class="buttonVoltar" onclick="window.location.href='../cadastro-pet/cadastro-pet.php';">Voltar</button>
+            <button type="submit" class="buttonConfirmar">Confirmar</button>
         </div>
     </main>
     <script src="Script.js"></script>

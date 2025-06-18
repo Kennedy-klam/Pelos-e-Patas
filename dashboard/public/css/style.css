@@ -194,8 +194,9 @@ body{
 }
 .cards .cards-header{
     width: 280px;
-    margin-right: 10px;
+    margin-right: 114px;
 }
+
 .cards .cards-header .cardheader{
     padding:  0.6rem 1.1rem;
     display: flex;
@@ -216,8 +217,8 @@ body{
     margin-left: 14px;
 }
 .cards .cards-header .cardheader .cards-value p.descriptio{
-    font-size: 0.8rem;
-    font-size: 0.8rem;
+    font-size: 1rem;
+    font-size: 1rem;
     font-weight: 600;
 }
 .cards .cards-header .cardheader .cards-icons{

@@ -214,15 +214,15 @@ input[type="number"]::-webkit-outer-spin-button{
     font-weight: 700;
     cursor: pointer;
 }
-.buttonConfirmar, .buttonHome{
-    background-color: #026970;
-    color: #FFFFFF;
-    border: none;
-}
-.buttonVoltar{
+.buttonConfirmar {
     background-color:#84E1DB ;
     color: #343229;
     border: #84E1DB;
+}
+.buttonVoltar{
+    background-color: #026970;
+    color: #FFFFFF;
+    border: none;
 } 
 
 @media screen  and (max-width: 1025px){

@@ -8,7 +8,7 @@ include('../database/protect.php');
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="teste.css?v=123"/>
+    <link rel="stylesheet" href="style.css"/>
     <title>Cadastro de Pet</title>
 </head>
 <body>
@@ -70,7 +70,7 @@ include('../database/protect.php');
                 </div>
             </div>
 
-            <h3>Data e hora do cadastro</h3>
+            <h3>Data e hora da castração</h3>
             <div class="container">
                 <div class="linha">
                     <div class="dataCadastro">
@@ -85,9 +85,9 @@ include('../database/protect.php');
             </div>
 
             <div class="botoes">
-                <button type="submit" class="buttonConfirmar">Confirmar</button>
-                <button type="button" class="buttonExcluir" onclick="window.location.href='../cadastro-pessoa/cadastro-pessoa.php';">Cadastro de Pessoa</button>
                 <button type="button" class="buttonVoltar" onclick="window.location.href='../dashboard/dash.php';">Voltar</button>
+                <button type="button" class="buttonCadastro" onclick="window.location.href='../cadastro-pessoa/cadastro-pessoa.php';">Cadastro de Pessoa</button>
+                <button type="submit" class="buttonConfirmar">Confirmar</button>
             </div>
         </form>
     </main>
