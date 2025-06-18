@@ -153,6 +153,10 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
                             </tr>
                         </tbody>
                     </table>
+                    <div class="grafico-box">
+                        <h3>Pets Cadastrados</h3>
+                        <canvas id="graficoPizza"></canvas>
+                    </div>
                 </div>
                 <div class="charts-wrapper">
                     <div class="charts" style="display:flex; gap: 40px; flex-wrap: wrap;">
@@ -160,7 +164,7 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
                             <h3>Caninos Castrados</h3>
                             <canvas id="chartCaninos" style="width: 150%; height: 600px;"></canvas>
                         </div>
-                        <div style="flex: 1 1 0px; background-color:white; border-radius: 4px; padding: 15px;">
+                        <div style="flex: 1 1 0px; background-color:white; border-radius: 4px; padding: 15px; margin-left: -15px;">
                             <h3>Felinos Castrados</h3>
                             <canvas id="chartFelinos" style="width: 150%; height: 600px;"></canvas>
                         </div>
@@ -234,6 +238,48 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
             .catch(error => {
                 console.error('Erro ao carregar os dados do gráfico:', error);
             });
+
+            // Gráfico de Pizza - Distribuição de Pets por Espécie
+            fetch('dados_pizza.php')
+                .then(response => response.json())
+                .then(data => {
+                    const labels = data.map(item => item.especie);
+                    const valores = data.map(item => item.total);
+
+                    const cores = ['#09A6A3', '#b5af9d']
+
+                    const ctx = document.getElementById('graficoPizza').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                data: valores,
+                                backgroundColor: cores,
+                                borderColor: '#fff',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom'
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(context) {
+                                            let total = context.dataset.data.reduce((a, b) => Number(a) + Number(b), 0);
+                                            let value = Number(context.parsed);
+                                            let percent = ((value / total) * 100).toFixed(1);
+                                            return `${context.label}: ${value} (${percent}%)`;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                });
     </script>
 </body>
 </html>
