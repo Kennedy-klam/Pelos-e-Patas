@@ -72,5 +72,86 @@ include ('../database/protect.php');
         </form>
     </main>
     <script src="Script.js"></script>
+    <script>
+// Script para preencher a idade automaticamente
+document.addEventListener('DOMContentLoaded', () => {
+    const nascimentoInput = document.getElementById('Data');
+    const idadeInput = document.getElementById('Idade');
+
+    function calcularIdade(dataNascimentoStr) {
+        if (!dataNascimentoStr) return '';
+
+        const dataNascimento = new Date(dataNascimentoStr);
+        const hoje = new Date();
+
+        if (dataNascimento > hoje) return ''; // Não aceita datas futuras
+
+        let idade = hoje.getFullYear() - dataNascimento.getFullYear();
+        const mesAtual = hoje.getMonth();
+        const diaAtual = hoje.getDate();
+
+        const mesNascimento = dataNascimento.getMonth();
+        const diaNascimento = dataNascimento.getDate();
+
+        if (mesAtual < mesNascimento || (mesAtual === mesNascimento && diaAtual < diaNascimento)) {
+            idade--;
+        }
+
+        return idade >= 0 ? idade : '';
+    }
+
+    nascimentoInput.addEventListener('change', () => {
+        const idadeCalculada = calcularIdade(nascimentoInput.value);
+        idadeInput.value = idadeCalculada;
+    });
+});
+
+<!-- Script ViaCEP para preencher endereço -->
+document.addEventListener('DOMContentLoaded', () => {
+    const cepInput = document.getElementById('Cep');
+
+    function limparEndereco() {
+        document.getElementById('Endereco').value = '';
+        document.getElementById('Bairro').value = '';
+        document.getElementById('Cidade').value = '';
+        document.getElementById('Estado').value = '';
+    }
+
+    cepInput.addEventListener('blur', () => {
+        const cep = cepInput.value.replace(/\D/g, '');
+
+        if (cep.length !== 8) {
+            limparEndereco();
+            alert('CEP inválido.');
+            return;
+        }
+
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.erro) {
+                    limparEndereco();
+                    alert('CEP não encontrado.');
+                    return;
+                }
+
+                document.getElementById('Endereco').value = data.logradouro || '';
+                document.getElementById('Bairro').value = data.bairro || '';
+                document.getElementById('Cidade').value = data.localidade || '';
+                document.getElementById('Estado').value = data.uf || '';
+            })
+            .catch(() => {
+                limparEndereco();
+                alert('Erro ao buscar o CEP.');
+            });
+    });
+
+    cepInput.addEventListener('input', () => {
+        if (cepInput.value.replace(/\D/g, '').length < 8) {
+            limparEndereco();
+        }
+    });
+});
+</script>
 </body>
 </html>

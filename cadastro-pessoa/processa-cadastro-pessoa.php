@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $telefone_fixo = trim($_POST['telefone_fixo'] ?? '');
     $email = trim($_POST['email'] ?? '');
 
-    // Mapear sexo para número
+    // sexo para número
     switch ($sexoTexto) {
         case 'feminino':
             $sexo = 1;
