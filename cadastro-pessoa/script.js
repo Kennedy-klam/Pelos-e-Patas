@@ -48,14 +48,5 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!confirm("Deseja finalizar seu Cadastro?")) {
       return;
     }
-
-    alert("Cadastro enviado com sucesso!");
-    // Envio real de dados pode ser implementado aqui com fetch()
-  });
-
-  document.querySelector(".buttonVoltar").addEventListener("click", function () {
-    if (confirm("Tem certeza que deseja voltar? As informações preenchidas serão perdidas.")) {
-      window.history.back();
-    }
   });
 });
