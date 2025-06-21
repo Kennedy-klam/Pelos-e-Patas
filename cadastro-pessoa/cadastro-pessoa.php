@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-<!-- Script ViaCEP para preencher endereço -->
+// Script ViaCEP para preencher endereço 
 document.addEventListener('DOMContentLoaded', () => {
     const cepInput = document.getElementById('Cep');
 
