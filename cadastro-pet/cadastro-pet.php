@@ -43,7 +43,7 @@ include('../database/protect.php');
                     <input type="date" id="nascimentoPet" name="nascimentoPet" class="date-custom" required />
                     <div class="idadePet">
                         <label for="idadePet">Idade: </label>
-                        <input type="number" name="idadePet" id="idadePet" min="0" />
+                        <input type="number" name="idadePet" id="idadePet" min="0" readonly />
                     </div>
                     <div class="generoPet">
                         <label>Sexo:</label>
@@ -206,6 +206,39 @@ include('../database/protect.php');
         sugestoesDiv.innerHTML = '';
         sugestoesDiv.style.display = 'none';
         }
+    });
+    });
+
+    //Script para preencher a idade automaticamente
+    document.addEventListener('DOMContentLoaded', () => {
+    const nascimentoInput = document.getElementById('nascimentoPet');
+    const idadeInput = document.getElementById('idadePet');
+
+    function calcularIdade(dataNascimentoStr) {
+        if (!dataNascimentoStr) return '';
+
+        const dataNascimento = new Date(dataNascimentoStr);
+        const hoje = new Date();
+
+        if (dataNascimento > hoje) return ''; // Não aceita datas futuras
+
+        let idade = hoje.getFullYear() - dataNascimento.getFullYear();
+        const mesAtual = hoje.getMonth();
+        const diaAtual = hoje.getDate();
+
+        const mesNascimento = dataNascimento.getMonth();
+        const diaNascimento = dataNascimento.getDate();
+
+        if (mesAtual < mesNascimento || (mesAtual === mesNascimento && diaAtual < diaNascimento)) {
+        idade--;
+        }
+
+        return idade >= 0 ? idade : '';
+    }
+
+    nascimentoInput.addEventListener('change', () => {
+        const idadeCalculada = calcularIdade(nascimentoInput.value);
+        idadeInput.value = idadeCalculada;
     });
     });
 </script>
