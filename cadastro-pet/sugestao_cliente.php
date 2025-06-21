@@ -1,22 +1,27 @@
 <?php
 include('../database/conexao.php');
 
-$termo = $_GET['termo'] ?? '';
+$nome = $_GET['nome'] ?? '';
+$nome = '%' . $nome . '%';
 
-$sugestoes = [];
+$sql = "
+  SELECT c.id_cliente, c.nome, c.cpf, cc.email, cc.telefone
+  FROM cliente c
+  LEFT JOIN contato_cliente cc ON c.id_cliente = cc.id_cliente
+  WHERE c.nome LIKE ?
+  LIMIT 10
+";
 
-if (!empty($termo)) {
-    $termoLike = '%' . $termo . '%';
-    $stmt = $conn->prepare("SELECT nome FROM cliente WHERE nome LIKE ? ORDER BY nome LIMIT 10");
-    $stmt->bind_param("s", $termoLike);
-    $stmt->execute();
-    $result = $stmt->get_result();
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $nome);
+$stmt->execute();
+$result = $stmt->get_result();
 
-    while ($row = $result->fetch_assoc()) {
-        $sugestoes[] = $row['nome'];
-    }
+$clientes = [];
+while ($row = $result->fetch_assoc()) {
+    $clientes[] = $row;
 }
 
 header('Content-Type: application/json');
-echo json_encode($sugestoes);
+echo json_encode($clientes);
 ?>

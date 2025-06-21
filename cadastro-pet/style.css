@@ -248,7 +248,54 @@ input[type="number"]::-webkit-outer-spin-button{
     background-color:#84E1DB ;
     color: #343229;
     border: #84E1DB;
-} 
+}
+
+.autocomplete-wrapper {
+    width: 29.5%;
+    margin-left: 10px;
+    margin-top: 10px;
+    position: relative; /* para posicionar as sugestões abaixo */
+}
+
+.autocomplete-wrapper input#nomeDono {
+    width: 100%;   /* ocupa todo o wrapper */
+    margin: 0;     /* zera margem para não deslocar */
+    box-sizing: border-box; /* garante que padding/border não aumentem largura */
+    height: 49px;
+}
+
+.sugestoes {
+ position: absolute;
+  left: 0;
+  width: 100%;
+  background-color: #FBF4E3;
+  border: 1.5px solid #026970;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: #343229;
+  box-shadow: 0 4px 8px rgba(2, 105, 112, 0.15);
+  z-index: 1000;
+  display: none;
+}
+
+.sugestao-item {
+  padding: 10px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #C9C3B2;
+  transition: background-color 0.2s ease;
+}
+
+.sugestao-item:last-child {
+  border-bottom: none;
+}
+
+.sugestao-item:hover {
+  background-color: #026970;
+  color: #FBF4E3;
+  font-weight: 700;
+}
+
 
 @media screen  and (max-width: 1025px){
     .linha {
