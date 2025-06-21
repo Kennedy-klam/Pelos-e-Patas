@@ -54,7 +54,7 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
                     </li>
                     <li>
                         <a href="../cadastro-pessoa/cadastro-pessoa.php"
-                            ><span><i class="fa-solid fa-address-card"></i></span> Cadastro de Pe</a
+                            ><span><i class="fa-solid fa-address-card"></i></span> Cadastro de Pessoa</a
                         >
                     </li>
 
