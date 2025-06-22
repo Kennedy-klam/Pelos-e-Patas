@@ -30,7 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Fila De Castração</title>
-    <link rel="stylesheet" href="styles.css?v=123" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+
+    </style>
 </head>
 
 <body>
@@ -42,20 +45,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1>Pelos&Patas</h1>
     </header>
 
-    <span class="spacer"></span>
+    <?php
+    function exibir_tabela($conn, $titulo, $condicao_data) {
+        echo "<h2 class='section-title'>{$titulo}</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>ESPÉCIE</th>
+                <th>GÊNERO</th>
+                <th>OBSERVAÇÕES</th>
+                <th>DONO</th>
+                <th>DATA</th>
+                <th>OPÇÕES</th>
+            </tr>";
 
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>ESPÉCIE</th>
-            <th>GÊNERO</th>
-            <th>OBSERVAÇÕES</th>
-            <th>DONO</th>
-            <th>DATA</th>
-            <th>OPÇÕES</th>
-        </tr>
-
-        <?php
         $sql = "SELECT 
                     c.id_castracao, 
                     c.dia_castracao, 
@@ -67,7 +70,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 INNER JOIN pet p ON c.id_pet = p.id_pet
                 INNER JOIN cliente cl ON p.id_cliente = cl.id_cliente
                 INNER JOIN especie e ON p.id_especie = e.id_especie
-                WHERE c.estado IS NULL OR c.estado = ''
+                WHERE (c.estado IS NULL OR c.estado = '')
+                    AND $condicao_data
                 ORDER BY c.dia_castracao ASC";
 
         $result = mysqli_query($conn, $sql);
@@ -76,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             while ($row = mysqli_fetch_assoc($result)) {
                 $genero = ($row['sexo'] == 2) ? 'Macho' : 'Fêmea';
                 $dataFormatada = date("d/m/Y", strtotime($row['dia_castracao']));
-                
+
                 echo "<tr>
                         <td>{$row['id_castracao']}</td>
                         <td>{$row['nome_especie']}</td>
@@ -87,22 +91,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <td>
                             <form method='POST' style='display:inline-block;'>
                                 <input type='hidden' name='id_castracao' value='{$row['id_castracao']}'>
-                                <button type='submit' name='acao' value='confirmar' class='padrao-button confirmar-button' onclick=\"return confirm('Deseja realmente confirmar esta castração?')\">Confirmar</button>
+                                <button type='submit' name='acao' value='confirmar' class='padrao-button confirmar-button' onclick=\"return confirm('Deseja confirmar esta castração?')\">Confirmar</button>
                             </form>
                             <form method='POST' style='display:inline-block; margin-left: 5px;'>
                                 <input type='hidden' name='id_castracao' value='{$row['id_castracao']}'>
-                                <button type='submit' name='acao' value='cancelar' class='padrao-button cancelar-button' onclick=\"return confirm('Deseja realmente cancelar esta castração?')\">Cancelar</button>
+                                <button type='submit' name='acao' value='cancelar' class='padrao-button cancelar-button' onclick=\"return confirm('Deseja cancelar esta castração?')\">Cancelar</button>
                             </form>
                         </td>
                     </tr>";
             }
         } else {
-            echo "<tr><td colspan='7'>Nenhum registro encontrado.</td></tr>";
+            echo "<tr><td colspan='7'>Nenhuma castração encontrada.</td></tr>";
         }
 
-        mysqli_close($conn);
-        ?>
-    </table>
-</body>
+        echo "</table>";
+    }
 
+    // Castrações de Hoje
+    exibir_tabela($conn, "Castrações Hoje", "DATE(c.dia_castracao) = CURDATE()");
+
+    // Castrações Futuras
+    exibir_tabela($conn, "Castrações Futuras", "DATE(c.dia_castracao) > CURDATE()");
+
+    // Castrações Passadas
+    exibir_tabela($conn, "Castrações Passadas", "DATE(c.dia_castracao) < CURDATE()");
+
+    mysqli_close($conn);
+    ?>
+</body>
 </html>

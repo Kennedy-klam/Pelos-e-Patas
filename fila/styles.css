@@ -135,3 +135,8 @@ td {
   align-items: center;
   gap: 10px; /* espaçamento entre os botões */
 }
+
+h2.section-title {
+  color: #0A7573;
+  margin-top: 40px;
+}
