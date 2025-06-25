@@ -19,7 +19,7 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
     <title>Dashboard</title>
     <link rel="stylesheet" href="public/css/all.css?v=123" />
     <link rel="stylesheet" href="public/css/bootstrap.min.css?v=123" />
-    <link rel="stylesheet" href="public/css/style.css?v=123" />
+    <link rel="stylesheet" href="public/css/style.css" />
     <script src="public/js/chart.js"></script>
 </head>
 
@@ -185,66 +185,139 @@ $nomeDaClinica = $_SESSION['nomeclinica'];
 
     <script src="public/js/nav.js"></script>
 
-    <script>
-        fetch('dados_chart.php')
-            .then(response => response.json())
-            .then(data => {
-                // Filtra dados para caninos (todos os sexos)
-                const caninos = data.filter(item => item.especie === 'canino');
+<canvas id="chartCaninos"></canvas>
+<canvas id="chartFelinos"></canvas>
 
-                // Filtra dados para felinas (somente fêmeas)
-                const felinas = data.filter(item => item.especie === 'felino');
+<script>
+fetch('dados_chart.php')
+    .then(response => response.json())
+    .then(rawData => {
+        // Converte idades e totais para número
+        const data = rawData.map(item => ({
+            ...item,
+            idade: parseInt(item.idade),
+            total: parseInt(item.total)
+        }));
 
-                // Labels para caninos: "Idade: X - sexo"
-                const labelsCaninos = caninos.map(item => `Idade: ${item.idade} - ${item.sexo}`);
-                const valoresCaninos = caninos.map(item => item.total);
+        const idades = [1, 2, 3, 4, 5, 6, 7];
 
-                // Labels para felinas: "Idade: X"
-                const labelsFelinas = felinas.map(item => `Idade: ${item.idade} - ${item.sexo}`);
-                const valoresFelinas = felinas.map(item => item.total);
-
-                // Função para criar gráficos com o mesmo estilo
-                function criarGrafico(ctx, labels, dados, titulo) {
-                    return new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: titulo,
-                                data: dados,
-                                backgroundColor: 'rgba(37, 160, 158, 0.7)',
-                                borderColor: 'rgba(37, 160, 158, 1)',
-                                borderWidth: 1
-                            }]
-                        },
-                        options: {
-                            responsive: true,
-                            scales: {
-                               y: {
-                                beginAtZero: true,
-                                ticks: {
-                                    stepSize: 1,
-                                    callback: function(value) {
-                                        return Number.isInteger(value) ? value : null;
-                                        }
-                                    }
-                                }
-
-                            }
-                        }
-                    });
-                }
-
-                // Renderiza gráficos
-                const ctxCaninos = document.getElementById('chartCaninos').getContext('2d');
-                criarGrafico(ctxCaninos, labelsCaninos, valoresCaninos, 'Caninos Castrados');
-
-                const ctxFelinas = document.getElementById('chartFelinos').getContext('2d');
-                criarGrafico(ctxFelinas, labelsFelinas, valoresFelinas, 'Felinos Castrados');
-            })
-            .catch(error => {
-                console.error('Erro ao carregar os dados do gráfico:', error);
+        function getValoresPorIdade(array, idades) {
+            return idades.map(idade => {
+                const item = array.find(i => i.idade === idade);
+                return item ? item.total : 0;
             });
+        }
+
+        // ===== CANINOS =====
+        const caninos = data.filter(i => i.especie === 'canino');
+        const caninoMacho = caninos.filter(i => i.sexo === 'macho');
+        const caninoFemea = caninos.filter(i => i.sexo === 'femea'); // era 'fêmea', agora normalizado para 'femea'
+
+        const dadosCaninoMacho = getValoresPorIdade(caninoMacho, idades);
+        const dadosCaninoFemea = getValoresPorIdade(caninoFemea, idades);
+
+        const ctxCanino = document.getElementById('chartCaninos').getContext('2d');
+        new Chart(ctxCanino, {
+            type: 'bar',
+            data: {
+                labels: idades,
+                datasets: [
+                    {
+                        label: 'Macho',
+                        data: dadosCaninoMacho,
+                        backgroundColor: 'rgba(37, 160, 158, 0.7)'
+                    },
+                    {
+                        label: 'Fêmea',
+                        data: dadosCaninoFemea,
+                        backgroundColor: 'rgba(255, 99, 132, 0.7)'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Idade (anos)'
+                        },
+                        categoryPercentage: 1.5, 
+                        barPercentage: 1.0 
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1,
+                            callback: value => Number.isInteger(value) ? value : null
+                        }
+                    }
+                }
+            }
+        });
+
+        // ===== FELINOS =====
+        const felinos = data.filter(i => i.especie === 'felino');
+        const felinoMacho = felinos.filter(i => i.sexo === 'macho');
+        const felinoFemea = felinos.filter(i => i.sexo === 'femea');
+
+        const dadosFelinoMacho = getValoresPorIdade(felinoMacho, idades);
+        const dadosFelinoFemea = getValoresPorIdade(felinoFemea, idades);
+
+        const ctxFelino = document.getElementById('chartFelinos').getContext('2d');
+        new Chart(ctxFelino, {
+            type: 'bar',
+            data: {
+                labels: idades,
+                datasets: [
+                    {
+                        label: 'Macho',
+                        data: dadosFelinoMacho,
+                        backgroundColor: 'rgba(56, 108, 203, 0.7)'
+                    },
+                    {
+                        label: 'Fêmea',
+                        data: dadosFelinoFemea,
+                        backgroundColor: 'rgba(132, 0, 255, 0.7)'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Idade (anos)'
+                        },
+                        categoryPercentage: 0.5, // espaço entre idades
+                        barPercentage: 1.0       // colunas coladas
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1,
+                            callback: value => Number.isInteger(value) ? value : null
+                        }
+                    }
+                }
+            }
+        });
+
+    })
+    .catch(error => {
+        console.error('Erro ao carregar os dados do gráfico:', error);
+    });
 
             // Gráfico de Pizza - Distribuição de Pets por Espécie
             fetch('dados_pizza.php')
