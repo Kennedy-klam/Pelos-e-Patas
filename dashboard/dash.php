@@ -225,12 +225,12 @@ fetch('dados_chart.php')
                     {
                         label: 'Macho',
                         data: dadosCaninoMacho,
-                        backgroundColor: 'rgba(37, 160, 158, 0.7)'
+                        backgroundColor: '#0A7573'
                     },
                     {
                         label: 'Fêmea',
                         data: dadosCaninoFemea,
-                        backgroundColor: 'rgba(255, 99, 132, 0.7)'
+                        backgroundColor: '#BBB6A8'
                     }
                 ]
             },
@@ -278,12 +278,12 @@ fetch('dados_chart.php')
                     {
                         label: 'Macho',
                         data: dadosFelinoMacho,
-                        backgroundColor: 'rgba(56, 108, 203, 0.7)'
+                        backgroundColor: '#0A7573'
                     },
                     {
                         label: 'Fêmea',
                         data: dadosFelinoFemea,
-                        backgroundColor: 'rgba(132, 0, 255, 0.7)'
+                        backgroundColor: '#BBB6A8'
                     }
                 ]
             },
