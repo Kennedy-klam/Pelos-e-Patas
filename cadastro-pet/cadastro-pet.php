@@ -62,7 +62,7 @@ include('../database/protect.php');
                 </div>
             </div>
 
-            <h3>Data e hora da castração</h3>
+            <h3>Data da castração</h3>
             <div class="container">
                 <div class="linha">
                     <div class="dataCadastro">
