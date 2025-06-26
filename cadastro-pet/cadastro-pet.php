@@ -14,7 +14,7 @@ include('../database/protect.php');
 <body>
     <header>Cadastro de Pet</header>
     <main>
-        <form method="POST" action="processa-cadastro.php">
+        <form method="POST" action="processa-cadastro.php" id="formCadastro">
             <h3>Informações Pessoais</h3>
             <div class="container">
                 <div class="linha">
@@ -241,6 +241,26 @@ include('../database/protect.php');
         idadeInput.value = idadeCalculada;
     });
     });
+
+    //não aceitar datas de castração anteriores a do dia atual
+    document.getElementById('formCadastro').addEventListener('submit', function(event) {
+        const dia = parseInt(document.getElementById('diaCadastro').value, 10);
+        const mes = parseInt(document.getElementById('mesCadastro').value, 10) - 1; // JavaScript usa 0 = Janeiro
+        const ano = parseInt(document.getElementById('anoCadastro').value, 10);
+
+        const dataDigitada = new Date(ano, mes, dia);
+        const hoje = new Date();
+        
+        // Zerar horas para comparar apenas datas
+        hoje.setHours(0, 0, 0, 0);
+        dataDigitada.setHours(0, 0, 0, 0);
+
+        if (dataDigitada < hoje) {
+            alert("A data de castração não pode ser anterior a hoje.");
+            event.preventDefault(); // Impede o envio do formulário
+        }
+    });
+
 </script>
 </body>
 </html>

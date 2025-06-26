@@ -66,7 +66,7 @@ include ('../database/protect.php');
                 </div>
             </div>
             <div class="botoes">
-                <button type="button" class="buttonVoltar" onclick="window.location.href='../cadastro-pet/cadastro-pet.php';">Voltar</button>
+                <button type="button" class="buttonVoltar" onclick="window.location.href='../dashboard/dash.php';">Voltar</button>
                 <button type="submit" class="buttonConfirmar">Confirmar</button>
             </div>
         </form>
