@@ -57,7 +57,7 @@ select {
     -moz-appearance: none; /* Firefox */
 
     /* Adicionando a seta personalizada */
-    background-image: url('/arrow-down.svg');
+    background-image: url('/cadastro-pet/arrow-down.svg');
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 30px; /* Aumenta a seta */
